@@ -42,7 +42,12 @@ func Printf(format string, args ...interface{}) {
 	fmt.Println(fmt.Sprintf(format, args...))
 }
 
-// Print - Prints new  line.
+// Print - Prints a line.
 func Print(line string) {
 	fmt.Println(line)
+}
+
+// Line - Prints a new line.
+func Line() {
+	fmt.Printf("\n")
 }
