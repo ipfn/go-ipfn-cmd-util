@@ -37,6 +37,20 @@ func Error(err error) {
 	os.Exit(1)
 }
 
+// Debugf - Prints new formatted line if Verbose is true.
+func Debugf(format string, args ...interface{}) {
+	if Verbose {
+		fmt.Println(fmt.Sprintf(format, args...))
+	}
+}
+
+// Debug - Prints a line if Verbose is true.
+func Debug(line string) {
+	if Verbose {
+		fmt.Println(line)
+	}
+}
+
 // Printf - Prints new formatted line.
 func Printf(format string, args ...interface{}) {
 	fmt.Println(fmt.Sprintf(format, args...))
