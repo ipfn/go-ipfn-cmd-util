@@ -16,6 +16,7 @@
 package logger
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 )
@@ -57,11 +58,20 @@ func Printf(format string, args ...interface{}) {
 }
 
 // Print - Prints a line.
-func Print(line string) {
-	fmt.Println(line)
+func Print(line ...interface{}) {
+	fmt.Println(line...)
 }
 
 // Line - Prints a new line.
 func Line() {
 	fmt.Printf("\n")
+}
+
+// PrintJSON - Prints json to console.
+func PrintJSON(v interface{}) {
+	body, err := json.MarshalIndent(v, "", "  ")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%s\n", body)
 }
