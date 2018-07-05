@@ -2,7 +2,6 @@
 
 [![IPFN project](https://img.shields.io/badge/project-IPFN-blue.svg?style=flat-square)](http://github.com/ipfn)
 [![GoDoc](https://godoc.org/github.com/ipfn/go-ipfn-cmd-util?status.svg)](https://godoc.org/github.com/ipfn/go-ipfn-cmd-util)
-[![Circle CI](https://img.shields.io/circleci/project/ipfn/go-ipfn-cmd-util.svg)](https://circleci.com/gh/ipfn/ipfn)
 
 IPFN command line utilities for Go programming language.
 
