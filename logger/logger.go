@@ -19,47 +19,62 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+
+	"go.uber.org/zap"
 )
 
 var (
 	// Verbose - Enables logger Verbose mode.
 	Verbose bool
+
+	logger, _ = zap.NewDevelopment()
+	sugar     = logger.Sugar()
 )
+
+// Sync - Flushes logs to buffer.
+func Sync() error {
+	return logger.Sync()
+}
 
 // Fatal - Prints fatal error and exits.
 func Fatal(format string, args ...interface{}) {
-	fmt.Printf("error: %s\n", fmt.Sprintf(format, args...))
-	os.Exit(1)
+	logger.Fatal(fmt.Sprintf(format, args...))
 }
 
 // Error - Prints error and exits.
 func Error(err error) {
-	fmt.Printf("error: %v\n", err)
+	logger.Error(fmt.Sprintf("error: %v", err))
 	os.Exit(1)
 }
 
 // Debugf - Prints new formatted line if Verbose is true.
 func Debugf(format string, args ...interface{}) {
-	if Verbose {
-		fmt.Println(fmt.Sprintf(format, args...))
-	}
+	logger.Debug(fmt.Sprintf(format, args...))
 }
 
 // Debug - Prints a line if Verbose is true.
 func Debug(line string) {
-	if Verbose {
-		fmt.Println(line)
-	}
+	logger.Debug(line)
 }
 
 // Printf - Prints new formatted line.
 func Printf(format string, args ...interface{}) {
-	fmt.Println(fmt.Sprintf(format, args...))
+	logger.Info(fmt.Sprintf(format, args...))
+}
+
+// Info - Prints new formatted line.
+func Info(msg string) {
+	sugar.Infow(msg)
+}
+
+// Infow - Prints new formatted line.
+func Infow(msg string, keysAndValues ...interface{}) {
+	sugar.Infow(msg, keysAndValues...)
 }
 
 // Print - Prints a line.
-func Print(line ...interface{}) {
-	fmt.Println(line...)
+func Print(a ...interface{}) {
+	fmt.Println(a...)
 }
 
 // Line - Prints a new line.
