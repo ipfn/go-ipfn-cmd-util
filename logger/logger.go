@@ -36,6 +36,17 @@ func Sync() error {
 	return logger.Sync()
 }
 
+// Disable - Disables logger.
+func Disable() {
+	SetLogger(zap.NewNop())
+}
+
+// SetLogger - Sets logger.
+func SetLogger(l *zap.Logger) {
+	logger = l
+	sugar = l.Sugar()
+}
+
 // Fatal - Prints fatal error and exits.
 func Fatal(format string, args ...interface{}) {
 	logger.Fatal(fmt.Sprintf(format, args...))
