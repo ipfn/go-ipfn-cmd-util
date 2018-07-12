@@ -64,12 +64,17 @@ func Printf(format string, args ...interface{}) {
 
 // Info - Prints new formatted line.
 func Info(msg string) {
-	sugar.Infow(msg)
+	logger.Info(msg)
 }
 
 // Infow - Prints new formatted line.
 func Infow(msg string, keysAndValues ...interface{}) {
 	sugar.Infow(msg, keysAndValues...)
+}
+
+// Debugw - Prints new formatted line.
+func Debugw(msg string, keysAndValues ...interface{}) {
+	sugar.Debugw(msg, keysAndValues...)
 }
 
 // Print - Prints a line.
