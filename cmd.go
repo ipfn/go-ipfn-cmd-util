@@ -16,16 +16,18 @@
 package cmdutil
 
 import (
-	"github.com/spf13/cobra"
+	"fmt"
+	"os"
 
-	"github.com/ipfn/go-ipfn-cmd-util/logger"
+	"github.com/spf13/cobra"
 )
 
 // WrapCommand - Wraps cobra command function with error handler.
 func WrapCommand(fn func(cmd *cobra.Command, args []string) error) func(cmd *cobra.Command, args []string) {
 	return func(cmd *cobra.Command, args []string) {
 		if err := fn(cmd, args); err != nil {
-			logger.Error(err)
+			fmt.Printf("error: %v", err)
+			os.Exit(1)
 		}
 	}
 }
