@@ -26,7 +26,7 @@ import (
 func WrapCommand(fn func(cmd *cobra.Command, args []string) error) func(cmd *cobra.Command, args []string) {
 	return func(cmd *cobra.Command, args []string) {
 		if err := fn(cmd, args); err != nil {
-			fmt.Printf("error: %v\n", err)
+			fmt.Printf("error: %v\n\n", err)
 			os.Exit(1)
 		}
 	}
